@@ -1,0 +1,355 @@
+\documentclass[10pt,letterpaper]{letter}
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage[
+top=0.48in,
+bottom=0.52in,
+left=0.62in,
+right=0.62in,
+footskip=0.28in
+]{geometry}
+
+\usepackage{newtxtext,newtxmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[
+colorlinks=true,
+urlcolor=linkblue,
+linkcolor=black
+]{hyperref}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage{array}
+
+% ============================================================
+% COLORS
+% ============================================================
+\definecolor{linkblue}{HTML}{1A5276}
+\definecolor{darkgray}{HTML}{333333}
+
+% ============================================================
+% GENERAL TYPOGRAPHY
+% ============================================================
+\raggedright
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ============================================================
+% PUBLICATION COUNTERS AND REFERENCES
+% ============================================================
+\makeatletter
+
+\newcounter{preprint}
+\newcounter{conference}
+\newcounter{journal}
+\newcounter{submittedconference}
+
+\newcommand{\journalitem}[1]{%
+	\refstepcounter{journal}%
+	\edef\@currentlabel{J\thejournal}%
+	\label{#1}%
+	\item[\textbf{J\thejournal}]%
+}
+
+\newcommand{\preprintitem}[1]{%
+	\refstepcounter{preprint}%
+	\edef\@currentlabel{P\thepreprint}%
+	\label{#1}%
+	\item[\textbf{P\thepreprint}]%
+}
+
+\newcommand{\conferenceitem}[1]{%
+	\refstepcounter{conference}%
+	\edef\@currentlabel{C\theconference}%
+	\label{#1}%
+	\item[\textbf{C\theconference}]%
+}
+
+\newcommand{\subconfitem}[1]{%
+	\refstepcounter{submittedconference}%
+	\edef\@currentlabel{S\thesubmittedconference}%
+	\label{#1}%
+	\item[\textbf{S\thesubmittedconference}]%
+}
+
+\newcommand{\pubref}[1]{%
+	\textsuperscript{[\hyperref[#1]{\ref*{#1}}]}%
+}
+
+\makeatother
+
+% ============================================================
+% HEADER / FOOTER
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{12pt}
+
+\fancyfoot[L]{%
+	\footnotesize
+	\textit{For the most up-to-date CV: }
+	\href{cv link}{www.example.com}
+}
+\fancyfoot[C]{
+	\footnotesize
+	\thepage
+}
+\fancyfoot[R]{
+	\footnotesize
+	\textit{Updated on \today.}
+}
+
+\renewcommand{\footrulewidth}{0.6pt}
+\renewcommand{\headrulewidth}{0pt}
+
+% ============================================================
+% SECTION FORMATTING
+% ============================================================
+\titleformat{\section}
+{\large\bfseries\scshape}
+{}
+{0pt}
+{}
+[\vspace{-0.55em}\rule{\textwidth}{0.7pt}]
+
+\titlespacing*{\section}
+{0pt}
+{0.72em}
+{0.38em}
+
+% ============================================================
+% LIST FORMATTING
+% ============================================================
+\setlist[itemize]{
+	leftmargin=1.35em,
+	label={\small$\bullet$},
+	itemsep=1pt,
+	topsep=2pt,
+	parsep=0pt,
+	partopsep=0pt
+}
+
+\setlist[enumerate]{
+	leftmargin=1.55em,
+	itemsep=2pt,
+	topsep=2pt,
+	parsep=0pt,
+	partopsep=0pt
+}
+
+% ============================================================
+% CUSTOM COMMANDS
+% ============================================================
+\newcommand{\entryspace}{\vspace{0.38em}}
+
+\newcommand{\cvheading}[2]{%
+	\noindent
+	\begin{tabular*}{\textwidth}{@{}p{0.74\textwidth}@{\extracolsep{\fill}}r@{}}
+		\textbf{#1} & #2
+	\end{tabular*}\\
+}
+
+\newcommand{\cvsubheading}[2]{\textit{#1}\hfill #2\\}
+
+\newcommand{\cvproject}[1]{\textit{Project:} #1\\}
+
+\newcommand{\cvpreprint}[1]{\textit{Preprint:} \href{#1}{arXiv}\\}
+
+\newcommand{\mediumsize}{\fontsize{11pt}{13pt}\selectfont}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+	% ============================================================
+	% HEADER
+	% ============================================================
+	\begin{center}
+		{\LARGE\bfseries Name}
+
+		\vspace{2pt}
+
+		{\mediumsize Current Position}
+
+		\vspace{3pt}
+
+		\small
+		\href{mailto:name@company.com}{name@company.com}
+		\quad
+		{\color{darkgray}$\vert$}
+		\quad
+		\href{https://www.example.com}{LinkedIn}
+		\quad
+		{\color{darkgray}$\vert$}
+		\quad
+		\href{https://www.example.com}{Personal Website}
+		\quad
+		{\color{darkgray}$\vert$}
+		\quad
+		Place
+	\end{center}
+	\vspace{-0.35em}
+
+	% ============================================================
+	% EDUCATION
+	% ============================================================
+	\section*{Education}
+
+	\cvheading{University Name}{Location}
+
+	Degree
+	\hfill Month Year -- Month Year
+
+	\textit{Thesis:} Thesis Name
+	\hfill \textit{CGPA: XX.X/Total}
+
+	\textit{Advisor:} Name of Advisor
+
+	\entryspace
+	% ============================================================
+	% RESEARCH INTERESTS
+	% ============================================================
+	\section*{Research Interests}
+
+	\begin{justify}
+		Short paragraph on research interests
+	\end{justify}
+
+	% ============================================================
+	% RESEARCH EXPERIENCE
+	% ============================================================
+	\section*{Research Experience}
+
+	\cvheading{Project 1 Name
+		\pubref{paper:journal:paper1} \pubref{paper:conf:paper1}
+	}{Month Year -- Month Year}
+
+	\textit{Advisor:} Name (Affiliation)
+	\hfill
+	\href{https://example.com}{arXiv:XXXX.XXXXX}
+
+	\begin{itemize}
+		\item Bullet point 1 on paper (this point in journal paper) \pubref{paper:journal:paper1}
+
+		\item Bullet point 2 on paper  (this point in conf paper) \pubref{paper:conf:paper1}
+	\end{itemize}
+
+	\entryspace
+
+	\cvheading{Project 2 Name
+		\pubref{paper:journal:paper2}
+	}{Month Year -- Month Year}
+
+	\textit{Advisor:} Name (Affiliation)
+	\hfill
+	\href{https://example.com}{arXiv:XXXX.XXXXX}
+
+	\begin{itemize}
+		\item Bullet point 1 on paper
+	\end{itemize}
+
+	\entryspace
+
+	\cvheading{Project 2 Name
+		\pubref{paper:conf:paper2}
+	}{Month Year -- Month Year}
+
+	\textit{Advisor:} Name (Affiliation)
+	\hfill
+	\href{https://example.com}{arXiv:XXXX.XXXXX}
+
+	\begin{itemize}
+		\item Bullet point 1 on paper
+	\end{itemize}
+
+	\entryspace
+
+	% ============================================================
+	% PUBLICATIONS
+	% ============================================================
+	\section*{Publications}
+
+	\textbf{Journal Publications}
+	\begin{enumerate}
+		\journalitem{paper:journal:paper1}
+		\textbf{Your name}, Co Authors.
+		\textit{Paper Title},
+		\textit{Journal Name}, Year.
+		\href{https://example.com}{arXiv:XXXX.XXXXX}
+	\end{enumerate}
+
+	\textbf{Preprints and Manuscripts Under Review}
+	\begin{enumerate}
+		\preprintitem{paper:journal:paper2}
+		\textbf{Your name}, Co Authors.
+		\textit{Paper Title},
+		YEAR. Submitted to
+		\textit{Journal Name; In STATUS.}
+		\href{https://example.com}{arXiv:XXXX.XXXXX}
+	\end{enumerate}
+
+	\textbf{Conference Papers}
+	\begin{enumerate}
+		\conferenceitem{paper:conf:paper1}
+		\textbf{Your Name}, co authors.
+		\textit{Paper Title}.
+		\textit{Conference Name, Year}
+		\href{https://example.com}{DOI}
+	\end{enumerate}
+
+	\textbf{Submitted Conference Papers}
+	\begin{enumerate}
+		\subconfitem{paper:conf:paper2}
+		\textbf{Your Name}, co authors.
+		\textit{Paper Title}.
+		\textit{Conference Name, Year}
+		\href{https://example.com}{arXiv:XXXX.XXXXX}
+	\end{enumerate}
+
+
+	% ============================================================
+	% TEACHING EXPERIENCE
+	% ============================================================
+	\section*{Teaching Experience}
+
+	\cvheading{Position, Department}{Month Year -- Month Year}
+
+	University Name
+	\hfill Location
+
+	\begin{itemize}
+		\item Bullet points on what you did
+	\end{itemize}
+
+	% ============================================================
+	% WORK EXPERIENCE
+	% ============================================================
+	\section*{Work Experience}
+
+	\cvheading{Position, Department}{Month Year -- Month Year}
+	Company
+	\hfill Location
+
+	\begin{itemize}
+		\item Bullet points on what you did
+	\end{itemize}
+
+	% ============================================================
+	% OTHER PROJECTS
+	% ============================================================
+	\section*{Other Projects}
+
+	\cvheading{Project Name}{Month Year -- Month Year}
+
+	\begin{itemize}
+		\item Project Details
+	\end{itemize}
+
+	\entryspace
+
+\end{document}
