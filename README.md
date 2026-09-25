@@ -1,4 +1,4 @@
-# Academic CV — LaTeX Template
+# Research CV — LaTeX Template
 
 A clean, single-file LaTeX template for an academic CV, built for researchers and graduate-school applicants. It numbers your publications by type (J1, P1, C1, S1…) and lets you cite them from anywhere in the CV with clickable superscript tags, so a reader can go straight from a research project to the paper it produced.
 
